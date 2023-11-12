@@ -1,0 +1,55 @@
+spring:
+  profiles:
+    active: develop
+
+server:
+  servlet:
+
+
+logging:
+  pattern:
+    console: '%d{dd MMM yyyy HH:mm} %logger{20} - %msg%n'
+    file: '%d{dd MMM yyyy HH:mm} %-5level %logger{20} - %msg%n'
+    clean-history-on-start: true
+  level:
+    org: info
+    com: error
+    '[org.hibernate]': off
+    '[com.shurjopay]': debug
+    '[com.zaxxer.hikari.HikariDataSource]': off
+    '[org.springframework.web.filter.CommonsRequestLoggingFilter]': debug
+    '[org.springframework.web.filter.ServletContextRequestLoggingFilter]': off
+
+---
+
+spring:
+  config:
+    activate:
+      on-profile: develop
+
+shurjopay:
+  username: sp_sandbox
+  password: pyyk97hu&6u6
+  shurjopay-api: https://sandbox.shurjopayment.com/api
+  sp-callback: https://sandbox.shurjopayment.com/response
+  logging:
+    file:
+      path: /tmp/log
+      name: shurjopay-plugin.log
+  prefix: spay
+  price: 2.00
+
+server:
+  port: 8080
+
+---
+
+spring:
+  config:
+    activate:
+      on-profile: sp-live
+
+shurjopay:
+  username: shurjopay
+  password: pyyk97hu&6u625
+  shurjopay-api: https://engine.shurjopayment.com/api
